@@ -10,9 +10,7 @@ export default function ContactSection() {
         <div className="max-w-3xl mx-auto">
           {/* Contact Content */}
           <div className="text-center">
-            <span className="inline-block px-4 py-1.5 bg-[#a855f7]/10 text-[#a855f7] text-sm font-semibold rounded-full mb-4">
-              İLETİŞİM
-            </span>
+
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Bizimle İletişime Geçin
             </h2>

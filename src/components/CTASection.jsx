@@ -1,45 +1,40 @@
-import { Phone, Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Phone, ArrowRight } from 'lucide-react'
 
 export default function CTASection() {
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#a855f7] via-[#d946ef] to-[#06b6d4]" />
-      
-      {/* Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
+    <section className="py-20 bg-muted/30">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 gradient-primary opacity-90" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-30" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-          Projeniz İçin Hazır mısınız?
-        </h2>
-        <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-          Etkinliğiniz için ihtiyacınız olan tüm teknolojik çözümler bir telefon kadar yakın. 
-          Hemen bizimle iletişime geçin, ücretsiz teklif alın.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="tel:08502287574"
-            className="flex items-center gap-3 px-8 py-4 bg-white text-[#a855f7] font-semibold rounded-2xl hover:shadow-2xl hover:shadow-black/20 transform hover:-translate-y-1 transition-all duration-300"
-          >
-            <Phone className="w-5 h-5" />
-            0850 228 75 74
-          </a>
-          <a
-            href="mailto:antalya@antalyakiralama.com"
-            className="flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300"
-          >
-            <Mail className="w-5 h-5" />
-            E-posta Gönder
-          </a>
+          <div className="relative text-center text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Projeniz İçin Teklif Alın
+            </h2>
+            <p className="text-white/80 mb-8 max-w-lg mx-auto">
+              Etkinliğiniz için en uygun teknoloji çözümlerini birlikte belirleyelim.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/iletisim"
+                className="px-6 py-3 rounded-xl bg-white text-primary font-semibold inline-flex items-center gap-2 hover:bg-white/90 transition-colors"
+              >
+                İletişime Geçin
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="tel:08502287574"
+                className="px-6 py-3 rounded-xl border border-white/30 text-white font-semibold inline-flex items-center gap-2 hover:bg-white/10 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                0850 228 75 74
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

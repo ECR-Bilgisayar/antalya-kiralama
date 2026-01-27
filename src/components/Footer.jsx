@@ -1,95 +1,99 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
+import logoLight from '../assets/logo-light.png'
+import logoDark from '../assets/logo-dark.png'
 
 export default function Footer() {
-  const { isDark } = useTheme()
   const currentYear = new Date().getFullYear()
+  const { theme } = useTheme()
 
   return (
-    <footer className="relative bg-gray-900 dark:bg-[#070a1a] text-gray-400">
-      {/* Main Footer */}
+    <footer className="bg-card border-t border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+          <div>
+            <Link to="/" className="flex items-center gap-3 mb-4">
               <img
-                src={isDark ? "/antalya-kiralama-logo-light.png" : "/antalya-kiralama-logo.png"}
+                src={theme === 'dark' ? logoDark : logoLight}
                 alt="Antalya Kiralama"
-                className="h-16 w-auto object-contain"
+                className="h-10 w-auto"
               />
+              <span className="font-display font-bold text-xl gradient-text">
+                Antalya Kiralama
+              </span>
             </Link>
-            <p className="text-sm leading-relaxed mb-6">
-              Antalya'nın lider teknoloji kiralama firması. Etkinlikleriniz için profesyonel çözümler.
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              2014'den bu yana teknoloji ve ses görüntü kiralama sistemleri alanında
+              profesyonel çözümler sunuyoruz.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Hizmetler</h4>
+            <h4 className="font-semibold mb-4">Hızlı Linkler</h4>
             <ul className="space-y-3">
-              {['Bilgisayar Kiralama', 'Tablet Kiralama', 'LED Ekran Kiralama', 'Ses Sistemi', 'VR Kiralama'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm hover:text-[#a855f7] transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  Ana Sayfa
+                </Link>
+              </li>
+              <li>
+                <Link to="/hakkimizda" className="text-muted-foreground hover:text-primary transition-colors">
+                  Hakkımızda
+                </Link>
+              </li>
+              <li>
+                <Link to="/hizmetler" className="text-muted-foreground hover:text-primary transition-colors">
+                  Hizmetler
+                </Link>
+              </li>
+              <li>
+                <Link to="/iletisim" className="text-muted-foreground hover:text-primary transition-colors">
+                  İletişim
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Services */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Şirket</h4>
+            <h4 className="font-semibold mb-4">Hizmetlerimiz</h4>
             <ul className="space-y-3">
-              {['Hakkımızda', 'İletişim'].map((item) => (
-                <li key={item}>
-                  <Link to={item === 'Hakkımızda' ? '/hakkimizda' : '/iletisim'} className="text-sm hover:text-[#a855f7] transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li className="text-muted-foreground">Bilgisayar Kiralama</li>
+              <li className="text-muted-foreground">Ses ve Görüntü Sistemleri</li>
+              <li className="text-muted-foreground">VR ve Oyun Kiralama</li>
+              <li className="text-muted-foreground">Network Kurulum</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-white mb-4">İletişim</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
+            <h4 className="font-semibold mb-4">İletişim</h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="w-4 h-4 text-primary" />
                 0850 228 75 74
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Mail className="w-4 h-4 text-primary" />
                 antalya@antalyakiralama.com
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5" />
-                Antalya, Türkiye
+              <li className="flex items-start gap-2 text-muted-foreground text-sm">
+                <Clock className="w-4 h-4 text-primary mt-0.5" />
+                <span>
+                  Pzt-Cum: 09:00-18:00<br />
+                  Cmt: 09:00-13:00 | Paz: Kapalı
+                </span>
               </li>
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm">
-              © {currentYear} Antalya Kiralama. Tüm hakları saklıdır.
-            </p>
-            <div className="flex items-center gap-6">
-              <Link to="/gizlilik-politikasi" className="text-sm hover:text-[#a855f7] transition-colors">
-                Gizlilik Politikası
-              </Link>
-              <Link to="/kvkk" className="text-sm hover:text-[#a855f7] transition-colors">
-                KVKK
-              </Link>
-            </div>
-          </div>
+        {/* Bottom */}
+        <div className="mt-12 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
+          <p>© {currentYear} Antalya Kiralama. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>

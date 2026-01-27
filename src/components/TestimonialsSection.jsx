@@ -30,9 +30,7 @@ export default function TestimonialsSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 bg-[#a855f7]/10 text-[#a855f7] text-sm font-semibold rounded-full mb-4">
-            REFERANSLAR
-          </span>
+
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Müşterilerimiz Ne Diyor?
           </h2>
