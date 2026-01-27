@@ -17,8 +17,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 mb-4">
               <img
                 src={theme === 'dark' ? logoDark : logoLight}
-                alt="Antalya Kiralama"
-                className="h-10 w-auto"
+
               />
               <span className="font-display font-bold text-xl gradient-text">
                 Antalya Kiralama
