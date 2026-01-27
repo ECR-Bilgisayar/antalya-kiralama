@@ -22,18 +22,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
               src={theme === 'dark' ? logoDark : logoLight}
               alt="Antalya Kiralama"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
-            <div>
-              <span className="font-display font-bold text-xl gradient-text">
-                Antalya Kiralama
-              </span>
-              <p className="text-xs text-muted-foreground">2014'den beri</p>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}

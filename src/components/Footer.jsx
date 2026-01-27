@@ -17,11 +17,9 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 mb-4">
               <img
                 src={theme === 'dark' ? logoDark : logoLight}
-
+                alt="Antalya Kiralama"
+                className="h-12 w-auto"
               />
-              <span className="font-display font-bold text-xl gradient-text">
-                Antalya Kiralama
-              </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               2014'den bu yana teknoloji ve ses görüntü kiralama sistemleri alanında
