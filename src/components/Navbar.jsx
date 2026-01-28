@@ -37,6 +37,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
+
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
@@ -52,8 +53,10 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center flex-1 justify-center">
+          <div className="hidden lg:flex items-center">
             <div className="flex items-center bg-muted/80 backdrop-blur-sm rounded-full p-1 border border-border/50">
+
+              {/* Normal linkler */}
               {navLinks.map(link => (
                 <Link
                   key={link.path}
@@ -73,30 +76,31 @@ const Navbar = () => {
                   <span className="relative z-10">{link.name}</span>
                 </Link>
               ))}
+
+              {/* İletişim – navbar içinde, renkli */}
+              <Link
+                to="/iletisim"
+                className="relative px-4 py-2 ml-1 rounded-full text-sm font-semibold text-white"
+              >
+                <motion.div
+                  className="absolute inset-0 gradient-primary rounded-full shadow-lg shadow-primary/30"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <span className="relative z-10">İletişim</span>
+              </Link>
+
             </div>
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* İletişim CTA - EN SAĞ */}
-            <Link
-              to="/iletisim"
-              className="relative px-6 py-2 rounded-full text-sm font-semibold text-white"
-            >
-              <motion.div
-                className="absolute inset-0 gradient-primary rounded-full shadow-lg shadow-primary/30"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              />
-              <span className="relative z-10">İletişim</span>
-            </Link>
-
-            {/* Theme Toggle */}
+          <div className="hidden lg:flex items-center">
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="p-2.5 rounded-xl bg-muted border border-border/50"
+              className="relative p-2.5 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-200 border border-border/50"
+              aria-label="Tema değiştir"
             >
               {theme === 'dark' ? (
                 <Sun className="w-5 h-5 text-yellow-500" />
@@ -109,9 +113,13 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-muted"
+            className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-foreground" />
+            ) : (
+              <Menu className="w-6 h-6 text-foreground" />
+            )}
           </button>
         </div>
       </div>
@@ -123,7 +131,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-t border-border/50"
+            className="lg:hidden bg-background/98 backdrop-blur-lg border-t border-border/50"
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map(link => (
@@ -131,7 +139,10 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-muted"
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${location.pathname === link.path
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-muted-foreground hover:bg-muted'
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -142,7 +153,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block pt-3"
               >
-                <button className="w-full gradient-primary text-white font-semibold py-3 rounded-xl shadow-lg">
+                <button className="w-full gradient-primary text-white font-semibold py-3 rounded-xl shadow-lg shadow-primary/30">
                   İletişim
                 </button>
               </Link>

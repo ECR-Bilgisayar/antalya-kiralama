@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import ScrollToTop from './components/ScrollToTop'  // Ekleyin
+import ScrollToTop from './components/ScrollToTop'
+import ScrollToTopButton from './components/ScrollToTopButton'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -11,6 +12,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <ScrollToTop />
+      <ScrollToTopButton />
       <Navbar />
       <main className="flex-1">
         <Routes>
