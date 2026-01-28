@@ -41,8 +41,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Content - Service Cards */}
+          {/* Right Content - Service Cards - DÜZ HIZALAMA */}
           <div className="hidden lg:grid grid-cols-2 gap-4">
+            {/* Sol Sütun */}
             <div className="space-y-4">
               <div className="p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mb-4">
@@ -59,7 +60,9 @@ export default function HeroSection() {
                 <p className="text-sm text-muted-foreground">Profesyonel ses ekipmanları</p>
               </div>
             </div>
-            <div className="space-y-4 pt-8">
+
+            {/* Sağ Sütun - pt-8 KALDIRILDI */}
+            <div className="space-y-4">
               <div className="p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

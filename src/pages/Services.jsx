@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'  // Bu satırı ekleyin
 import {
     Monitor, Tablet, Projector, Mic2, Gamepad2, Wifi,
     CreditCard, Video, Printer, Smartphone, Tv, Camera,
@@ -517,12 +518,12 @@ Kordon, kart tutucu ve askı aksesuarları ile tam çözüm sunuyoruz.`,
                                         <h4 className="font-semibold mb-1">Detaylı Bilgi ve Fiyat Teklifi</h4>
                                         <p className="text-sm text-muted-foreground">Profesyonel ekibimiz size en uygun çözümü sunacaktır.</p>
                                     </div>
-                                    <a
-                                        href="/iletisim"
+                                    <Link
+                                        to="/iletisim"
                                         className={`px-6 py-3 rounded-xl bg-gradient-to-r ${selectedCategory.color} text-white font-medium hover:opacity-90 transition-opacity whitespace-nowrap`}
                                     >
                                         Teklif Al
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

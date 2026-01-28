@@ -54,7 +54,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Kartlar düz, transform yok */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
@@ -62,6 +62,7 @@ export default function ServicesSection() {
               <div
                 key={index}
                 className="group p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                style={{ transform: 'none' }}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <Icon className="w-6 h-6 text-white" />

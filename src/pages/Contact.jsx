@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Phone, Mail, Clock, Send, CheckCircle, ArrowRight } from 'lucide-react'
+import { Phone, Mail, Clock, Send, CheckCircle, ArrowRight, MessageCircle } from 'lucide-react'
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -31,6 +31,14 @@ export default function Contact() {
             value: 'antalya@antalyakiralama.com',
             subtitle: 'Hızlı Geri Dönüş',
             href: 'mailto:antalya@antalyakiralama.com',
+        },
+        {
+            icon: MessageCircle,
+            title: 'WhatsApp',
+            value: '0850 228 75 74',
+            subtitle: 'Anında Mesaj',
+            href: 'https://wa.me/908502287574',
+            isWhatsApp: true,
         },
         {
             icon: Clock,
@@ -67,9 +75,9 @@ export default function Contact() {
                             {contactInfo.map((info, index) => {
                                 const Icon = info.icon
                                 const Content = (
-                                    <div className="p-5 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all group">
+                                    <div className={`p-5 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all group ${info.isWhatsApp ? 'hover:border-green-500/50' : ''}`}>
                                         <div className="flex items-start gap-4">
-                                            <div className="w-11 h-11 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0">
+                                            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${info.isWhatsApp ? 'bg-green-500' : 'gradient-primary'}`}>
                                                 <Icon className="w-5 h-5 text-white" />
                                             </div>
                                             <div className="flex-1 min-w-0">
@@ -78,14 +86,20 @@ export default function Contact() {
                                                 <p className="text-xs text-muted-foreground mt-0.5">{info.subtitle}</p>
                                             </div>
                                             {info.href && (
-                                                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" />
+                                                <ArrowRight className={`w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-all flex-shrink-0 mt-1 ${info.isWhatsApp ? 'group-hover:text-green-500' : 'group-hover:text-primary'}`} />
                                             )}
                                         </div>
                                     </div>
                                 )
 
                                 return info.href ? (
-                                    <a key={index} href={info.href} className="block">
+                                    <a
+                                        key={index}
+                                        href={info.href}
+                                        className="block"
+                                        target={info.isWhatsApp ? '_blank' : undefined}
+                                        rel={info.isWhatsApp ? 'noopener noreferrer' : undefined}
+                                    >
                                         {Content}
                                     </a>
                                 ) : (

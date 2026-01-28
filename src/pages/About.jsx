@@ -30,9 +30,6 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                     <div className="text-center max-w-3xl mx-auto">
-                        <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
-                            HAKKIMIZDA
-                        </span>
                         <h1 className="text-4xl md:text-5xl font-bold mb-6">
                             <span className="gradient-text">Teknoloji Partneriniz</span>
                         </h1>
