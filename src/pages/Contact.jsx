@@ -10,11 +10,39 @@ export default function Contact() {
         message: '',
     })
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        setIsSubmitted(true)
-        setTimeout(() => setIsSubmitted(false), 3000)
+        setIsLoading(true)
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            })
+
+            if (res.ok) {
+                setIsSubmitted(true)
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    message: '',
+                })
+                setTimeout(() => setIsSubmitted(false), 3000)
+            } else {
+                const data = await res.json()
+                alert('Hata: ' + (data.error || 'Gönderim başarısız'))
+            }
+        } catch (error) {
+            console.error(error)
+            alert('İstek sırasında hata oluştu')
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     const contactInfo = [
@@ -204,10 +232,11 @@ export default function Contact() {
 
                                         <button
                                             type="submit"
+                                            disabled={isLoading}
                                             className="w-full py-3 rounded-lg gradient-primary text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity text-sm"
                                         >
                                             <Send className="w-4 h-4" />
-                                            Gönder
+                                            {isLoading ? 'Gönderiliyor...' : 'Gönder'}
                                         </button>
                                     </form>
                                 )}
