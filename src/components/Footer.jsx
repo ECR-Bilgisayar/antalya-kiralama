@@ -8,6 +8,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   const { theme } = useTheme()
 
+  const services = [
+    { name: 'Bilgisayar Kiralama', path: '/hizmetler' },
+    { name: 'Ses ve Görüntü Sistemleri', path: '/hizmetler' },
+    { name: 'VR ve Oyun Kiralama', path: '/hizmetler' },
+    { name: 'Network Kurulum', path: '/hizmetler' },
+  ]
+
   return (
     <footer className="bg-card border-t border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -54,14 +61,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services - Linkli */}
           <div>
             <h4 className="font-semibold mb-4">Hizmetlerimiz</h4>
             <ul className="space-y-3">
-              <li className="text-muted-foreground">Bilgisayar Kiralama</li>
-              <li className="text-muted-foreground">Ses ve Görüntü Sistemleri</li>
-              <li className="text-muted-foreground">VR ve Oyun Kiralama</li>
-              <li className="text-muted-foreground">Network Kurulum</li>
+              {services.map((service, index) => (
+                <li key={index}>
+                  <Link
+                    to={service.path}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -69,13 +82,17 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">İletişim</h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4 text-primary" />
-                0850 228 75 74
+              <li>
+                <a href="tel:08502287574" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                  <Phone className="w-4 h-4 text-primary" />
+                  0850 228 75 74
+                </a>
               </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4 text-primary" />
-                antalya@antalyakiralama.com
+              <li>
+                <a href="mailto:antalya@antalyakiralama.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                  <Mail className="w-4 h-4 text-primary" />
+                  antalya@antalyakiralama.com
+                </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground text-sm">
                 <Clock className="w-4 h-4 text-primary mt-0.5" />

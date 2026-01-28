@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import logoLight from '../assets/logo-light.png'
 import logoDark from '../assets/logo-dark.png'
-
-// Mobil logo varsa ekleyin, yoksa aynı logoyu kullanın
-// import logoMobile from '../assets/logo-mobile.png'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -23,11 +20,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Sıralama: Hizmetler önce, Hakkımızda sonra (İletişim CTA olacak)
+  // Normal linkler (İletişim hariç)
   const navLinks = [
     { name: 'Ana Sayfa', path: '/' },
     { name: 'Hizmetler', path: '/hizmetler' },
-    { name: 'Hakkımızda', path: '/hakkimizda' },
   ]
 
   return (
@@ -43,7 +39,6 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            {/* Desktop Logo */}
             <motion.div
               className="hidden sm:flex items-center"
               whileHover={{ scale: 1.02 }}
@@ -61,7 +56,6 @@ const Navbar = () => {
               />
             </motion.div>
 
-            {/* Mobile Logo */}
             <motion.div
               className="sm:hidden flex items-center"
               whileHover={{ scale: 1.05 }}
@@ -80,9 +74,10 @@ const Navbar = () => {
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation Links - Kayma Efektli */}
+          {/* Desktop Navigation - İletişim CTA Hakkımızda'nın Solunda */}
           <div className="hidden lg:flex items-center">
             <div className="flex items-center bg-muted/80 backdrop-blur-sm rounded-full p-1 border border-border/50">
+              {/* Ana Sayfa ve Hizmetler */}
               {navLinks.map(link => (
                 <Link
                   key={link.path}
@@ -102,12 +97,45 @@ const Navbar = () => {
                   <span className="relative z-10">{link.name}</span>
                 </Link>
               ))}
+
+              {/* İletişim CTA - Pill içinde ama farklı stil */}
+              <Link
+                to="/iletisim"
+                className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${location.pathname === '/iletisim'
+                    ? 'text-white'
+                    : 'text-white'
+                  }`}
+              >
+                <motion.div
+                  className="absolute inset-0 gradient-primary rounded-full shadow-lg shadow-primary/30"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <span className="relative z-10">İletişim</span>
+              </Link>
+
+              {/* Hakkımızda - En Sağda */}
+              <Link
+                to="/hakkimizda"
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${location.pathname === '/hakkimizda'
+                    ? 'text-white'
+                    : 'text-muted-foreground hover:text-foreground'
+                  }`}
+              >
+                {location.pathname === '/hakkimizda' && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute inset-0 gradient-primary rounded-full shadow-lg shadow-primary/30"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">Hakkımızda</span>
+              </Link>
             </div>
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-3">
-            {/* Theme Toggle Button */}
+          {/* Desktop Actions - Sadece Theme Toggle */}
+          <div className="hidden lg:flex items-center">
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.05 }}
@@ -127,22 +155,6 @@ const Navbar = () => {
                 )}
               </motion.div>
             </motion.button>
-
-            {/* İletişim CTA Button */}
-            <Link to="/iletisim">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <button className="relative overflow-hidden gradient-primary text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-primary/30 border border-white/20">
-                  <span className="relative z-10 flex items-center gap-2">
-                    İletişim
-                  </span>
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                </button>
-              </motion.div>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -169,22 +181,38 @@ const Navbar = () => {
             className="lg:hidden bg-background/98 backdrop-blur-lg border-t border-border/50"
           >
             <div className="px-4 py-4 space-y-2">
-              {navLinks.map(link => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${location.pathname === link.path
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-muted'
-                    }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <Link
+                to="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${location.pathname === '/'
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:bg-muted'
+                  }`}
+              >
+                Ana Sayfa
+              </Link>
+              <Link
+                to="/hizmetler"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${location.pathname === '/hizmetler'
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:bg-muted'
+                  }`}
+              >
+                Hizmetler
+              </Link>
+              <Link
+                to="/hakkimizda"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${location.pathname === '/hakkimizda'
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:bg-muted'
+                  }`}
+              >
+                Hakkımızda
+              </Link>
 
               <div className="pt-4 space-y-3">
-                {/* Mobile Theme Toggle */}
                 <button
                   onClick={toggleTheme}
                   className="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
@@ -202,7 +230,6 @@ const Navbar = () => {
                   )}
                 </button>
 
-                {/* Mobile İletişim CTA */}
                 <Link
                   to="/iletisim"
                   onClick={() => setIsMobileMenuOpen(false)}
